@@ -85,21 +85,54 @@ class ArvoreBinaria
     end
   end
 
+  def self.Deserialize(raiz, listaDeNos)
+    listaDeNos.each do |no|
+      raiz = ArvoreBinaria::Inserir(raiz, no["id"], no["info"]) if !no.nil?
+    end
+    return raiz
+  end
+
+  def self.ConstruirArvore(strArv, pos = 0)
+    raise StandardError.new "Sintaxe de Arvore Invalida" if strArv[pos] != '('
+    pos += 1
+
+    strNum = ""
+    if strArv[pos] == '-'
+      strNum += "-"
+      pos += 1
+    end
+
+    while '0' <= strArv[pos] && strArv[pos] <= '9'
+      strNum += strArv[pos]
+      pos += 1
+    end
+
+    num = strNum.to_i
+
+
+  end
+
   # Arvore Functions
 
+  def ConstruirArvore(strArv)
+
+  end
+
   def Inserir(info)
-    def Inserir(info)
       if @root.nil?
         @root = ArvoreBinaria::Inserir(@root, 0, info)
       else
         @root = ArvoreBinaria::Inserir(@root, @size, info) if root != nil
       end
       @size += 1
-    end
   end
 
   def Serialize()
     ArvoreBinaria::Serialize(@root)
+  end
+
+  def Deserialize(listaDeNos)
+    @root = ArvoreBinaria::Deserialize(@root, listaDeNos)
   end
 
   def Altura()
