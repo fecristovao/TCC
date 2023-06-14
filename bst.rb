@@ -1,4 +1,4 @@
-require_relative './ab2.rb'
+require_relative './arvore_binaria.rb'
 class ArvoreBinariaBusca < ArvoreBinaria
   def self.Inserir(no, id, info)
     if no.nil?

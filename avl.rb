@@ -7,6 +7,16 @@ class ArvoreBalanceada < ArvoreBinariaBusca
   end
 
   def Balanceada?()
-    ArvoreBalanceada::Balanceada?(@root)
+    ArvoreBalanceada::BalenceadaOtimizado(@root) != false
+  end
+
+  # Enquanto não retornar false, vai somando 1 a cada nivel e pegando o maior ja contado
+  def self.BalenceadaOtimizado(no)
+    return 0 if no.nil?
+    esquerda, direita = ArvoreBalanceada::BalenceadaOtimizado(no.esquerda), ArvoreBalanceada::BalenceadaOtimizado(no.direita)
+    return false if esquerda == false || direita == false
+    return false if (esquerda - direita).abs > 1
+    1 + [esquerda, direita].max
   end
 end
+
